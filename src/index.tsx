@@ -1,16 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import { Suspense } from 'react';
+import { createRoot } from 'react-dom/client';
+//import { HelmetProvider } from 'react-helmet-async';
+
 import App from './App';
+//import { ThemeProvider } from './theme';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
-  <React.StrictMode>
+  <Suspense fallback={<div>Loading...</div>}>
     <App />
-  </React.StrictMode>
+  </Suspense>
 );
 
 // If you want to start measuring performance in your app, pass a function

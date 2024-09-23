@@ -3,30 +3,50 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.65",
-    "@types/react": "^18.2.38",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.19",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.7",
+    "@mui/x-date-pickers": "^6.18.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.10.3",
+    "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.17",
+    "framer-motion": "^10.16.12",
+    "immer": "^10.0.3",
+    "material-ui-color": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-duration-picker": "^1.1.1",
+    "react-helmet-async": "^2.0.3",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "styled-components": "^6.1.1",
+    "typescript": "^5.3.2",
+    "use-immer": "^0.9.0",
+    "web-vitals": "^3.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format:check": "prettier --write 'src/**/*.{ts,tsx}'",
+    "lint:check": "eslint --fix --max-warnings 0 'src/**/*.{ts,tsx}'",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "prettier"
+    ],
+    "rules": {
+      "no-console": "warn"
+    }
   },
   "browserslist": {
     "production": [
@@ -39,5 +59,37 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.3.6",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "luxon": "^3.4.4",
+    "prettier": "3.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g commitlint.js",
+      "pre-commit": "tsc && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,css,scss}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix --max-warnings 0"
+    ],
+    "*.md": "prettier --write"
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 100,
+    "singleQuote": true
   }
 }
